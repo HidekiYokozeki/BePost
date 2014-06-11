@@ -1,0 +1,19 @@
+/* 
+  Localization.strings
+  BePost
+
+  Created by 横関秀樹 on 2014/06/04.
+  Copyright (c) 2014年 Hideki yokozeki. All rights reserved.
+*/
+
+"Phone" = "電話番号";
+"Recieving..." = "受信中";
+"Complete" = "受信完了";
+"Beacon error" = "Beacon エラー";
+"Please turn ON BlueTooth And turn OFF Airpane Mode." = "BlueToothがOFFになっていないか、または機内モードになっていないか確認してください。";
+"Your iPhone don't allow to access AddressBook. Please Access Setting>>Privacy>>Contacts and allow." =
+"連絡先へのアクセスが禁止されています。\n設定>プライバシー>連絡先から、アクセスの設定を\"オン\"に変更してください。";
+"Notice" = "お知らせ";
+"By flick down, Mode will be changed to ID Recieving Mode." = "下フリックでIDの受信モードになります。受信が完了すると受信したIDが表示されます。";
+"Choose your ID you want to send by flick left or right." = "右フリック,左フリックで送信したい情報(Facebook,Line,電話番号)を選択します。";
+"By flick up, Mode will be changed to ID Sending Mode." = "上フリックでIDの送信モードになります。";

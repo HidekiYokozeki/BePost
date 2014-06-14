@@ -87,6 +87,17 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1H1-4Q-J4s">
+                                <rect key="frame" x="92" y="459" width="146" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Get your FacebookID">
+                                    <color key="titleColor" red="0.78451049090000002" green="0.93745063770000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="FacebookBtn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tIi-tN-jSR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -95,10 +106,13 @@
                             <constraint firstAttribute="trailing" secondItem="vJl-IP-krc" secondAttribute="trailing" constant="118" id="YkU-V3-11M"/>
                             <constraint firstAttribute="bottom" secondItem="Bf0-pI-xzi" secondAttribute="bottom" constant="48" id="ZtG-Ch-Eo9"/>
                             <constraint firstAttribute="trailing" secondItem="AJh-2l-B9p" secondAttribute="trailing" constant="51" id="aV7-Fz-Sbg"/>
+                            <constraint firstAttribute="trailing" secondItem="1H1-4Q-J4s" secondAttribute="trailing" constant="82" id="cbb-ic-eZW"/>
                             <constraint firstItem="vJl-IP-krc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="118" id="iVe-En-yir"/>
+                            <constraint firstItem="1H1-4Q-J4s" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="92" id="pey-ZJ-Bsu"/>
                             <constraint firstAttribute="bottom" secondItem="AJh-2l-B9p" secondAttribute="bottom" constant="15" id="sXW-tF-Iyv"/>
                             <constraint firstAttribute="trailing" secondItem="Bf0-pI-xzi" secondAttribute="trailing" constant="51" id="uRz-27-3hi"/>
                             <constraint firstItem="Bf0-pI-xzi" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="51" id="wk1-tE-US3"/>
+                            <constraint firstAttribute="bottom" secondItem="1H1-4Q-J4s" secondAttribute="bottom" constant="15" id="xxO-ha-Zn8"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -111,6 +125,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="FBBtn" destination="1H1-4Q-J4s" id="ReZ-MP-MaA"/>
                         <outlet property="IDView" destination="Bf0-pI-xzi" id="18L-TI-zax"/>
                         <outlet property="NameBox" destination="NXR-d7-bqn" id="uYs-Lj-2tG"/>
                         <outlet property="PickerBtn" destination="AJh-2l-B9p" id="DZU-XD-Inh"/>

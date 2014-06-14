@@ -15,5 +15,7 @@
 "連絡先へのアクセスが禁止されています。\n設定>プライバシー>連絡先から、アクセスの設定を\"オン\"に変更してください。";
 "Notice" = "お知らせ";
 "By flick down, Mode will be changed to ID Recieving Mode." = "下フリックでIDの受信モードになります。受信が完了すると受信したIDが表示されます。";
-"Choose your ID you want to send by flick left or right." = "右フリック,左フリックで送信したい情報(Facebook,Line,電話番号)を選択します。";
+"Turn On Bluetooth and LocationService. After that, Choose your ID you want to send by flick left or right." = "Bluetooth, 位置情報サービスをONにし、右フリック,左フリックで送信したい情報(Facebook,Line,電話番号)を選択します。";
 "By flick up, Mode will be changed to ID Sending Mode." = "上フリックでIDの送信モードになります。";
+"Your Bluetooth has been OFF. Please Access Setting>>Bluetooth and Turn ON." = "BluetoothがOFFになっています。設定>>BluetoothからBluetoothをONにしてください";
+"You don't have FacebookID in your iPhone. Please download Facebook app from app store and regist your FacebookID. Otherwise, please access setting>>Facebook and allow Bepost to use your account." = "iPhoneからあなたのFacebookIDを探せません。Facebookアプリをダウンロードし、あなたのIDを登録してください。また、設定>>Facebookから、BePostがあなたのアカウントを使用する事を許可してください。";

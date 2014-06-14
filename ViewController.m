@@ -149,7 +149,45 @@
     [self FacebookLoginMake];
 }
 
+-(void) FacebookLoginMake{
+    
+    loginview = [[FBLoginView alloc] init];
+    loginview.delegate = self;
+    
+    loginview.frame = CGRectOffset(loginview.frame, 51, 325+View_y_position);
+    NSLog(@"%lf %lf",loginview.frame.size.width,loginview.frame.size.height);
+    loginview.alpha = 0;
+    
+    [self.view addSubview:loginview];
+    
+}
 
+// This method will be called when the user information has been fetched
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+                            user:(id<FBGraphUser>)user {
+    
+    
+    FacebookID = [user objectForKey:@"link"];
+    //FacebookID = user.link;
+    FacebookID = [FacebookID substringFromIndex:44];
+    FacebookID = [FacebookID stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    NSLog(@"Facebook ID = %@",FacebookID);
+    
+    //FacebookID = [FacebookID substringWithRange:NSMakeRange(44, FacebookID.length-1)];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:FacebookID forKey:@"Facebook"];
+    [userDefaults synchronize];
+    
+    if(remenber_position == 250){
+        self.NameBox.text = FacebookID;
+        NSLog(@"Facebook ID1 = %@",FacebookID);
+    }
+}
+
+
+
+/*
 //Facebook部
 -(void) FacebookLoginMake{
 
@@ -241,7 +279,8 @@
                           otherButtonTitles:nil] show];
     }
 }
-
+*/
+ 
 //Facebookここまで
 - (void)viewWillAppear:(BOOL)animated{
     /*

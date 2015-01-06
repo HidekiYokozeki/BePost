@@ -24,6 +24,10 @@
 - (IBAction)test:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *PutTextView;
 @property (weak, nonatomic) IBOutlet UIView *IDView;
+- (IBAction)FacebookBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *FBBtn;
+@property (weak, nonatomic) IBOutlet UITextField *serNameField;
+- (IBAction)editEnd:(id)sender;
 
 
 @end

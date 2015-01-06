@@ -100,10 +100,10 @@
         switch (i) {
             case 0:
                 //NSLocalizedString
-                label.text = NSLocalizedString(@"Choose your ID you want to send by flick left or right.",nil);
+                label.text = NSLocalizedString(@"Turn On Bluetooth and LocationService. After that, Choose your ID you want to send by flick left or right.",nil);
                 break;
             case 1:
-                label.text = NSLocalizedString(@"By flick up, Mode will be changed to ID Sending Mode.",nil);
+                label.text = NSLocalizedString(@"By flick up, Mode will be changed to ID Sending Mode. You need to pu BePostID before sending.",nil);
                 break;
             case 2:
                 label.text = NSLocalizedString(@"By flick down, Mode will be changed to ID Recieving Mode.",nil);

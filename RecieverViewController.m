@@ -19,7 +19,7 @@
     int mode_estimate;
     UIActivityIndicatorView *indicator;
     NSTimer *timer;
-    
+    NSArray *phrases;
 }
 
 @end
@@ -42,9 +42,7 @@
     
     //[UINavigationBar appearance].barTintColor = [UIColor colorWithRed:0.000 green:0.549 blue:0.890 alpha:1.000];
     
-         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Back.png"]];
-
-    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Back.png"]];
     self.currentMajor = @1;
     self.currentMinor = @1;
     Get_Start_Flag = YES;
@@ -65,7 +63,7 @@
         self.manager.delegate = self;
         
         // 生成したUUIDからNSUUIDを作成
-        NSString *uuid = @"1E21BCE0-7655-4647-B492-A3F8DE2F9A02";//@"1E21BCE0-7655-4647-B492-A3F8DE2F9A02";
+        NSString *uuid = @"AE21BCE0-7655-4647-B492-A3F8DE2F9A02";//@"1E21BCE0-7655-4647-B492-A3F8DE2F9A02";
         self.proximityUUID = [[NSUUID alloc] initWithUUIDString:uuid];
         
         // CLBeaconRegionを作成
@@ -82,7 +80,7 @@
         [self.manager startRangingBeaconsInRegion:self.region];
         
     }
-    
+    self.IDField.enabled = NO;
     UIImage* images = [UIImage imageNamed:@"bike.png"];
     self.Load.image = images;
     
@@ -191,15 +189,24 @@
     
     if ([major intValue] == 0 && Count_Start_Flag == YES){
         
+        phrases = [string componentsSeparatedByString:@"/"];
         Count_Start_Flag = NO;
-        self.IDField.text = string;
-        self.titleLabel.text = NSLocalizedString(@"Complete", nil);
+        
+        self.testLabel.text = [phrases objectAtIndex:0];
+        
+        self.titleLabel.text = NSLocalizedString(@"Complete.", nil);
         [indicator stopAnimating];
+        
+        // 距離測定を終了
+        [self.manager stopRangingBeaconsInRegion:self.region];
+        // 領域監視を終了
+        [self.manager stopMonitoringForRegion:self.region];
         
         if(mode_estimate == 1){
             
+            self.PasteBtn.alpha=1;
+            
         }
-        
         if(mode_estimate == 2){
             
             self.FacebookAddBtn.alpha = 1.0;
@@ -216,12 +223,12 @@
             
             
         }
-        
         if(mode_estimate == 3){
             
             self.AddressBtn.alpha = 1.0;
         
         }
+        [self PushAlert];
         
         
     }
@@ -348,13 +355,12 @@
     [alert show];
     */
     
-    
+    self.titleLabel.alpha = 0;
     if(error != nil){
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Beacon error",nil) message:NSLocalizedString(@"Please turn on BlueTooth And turn off Airpane Mode.",nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Beacon error",nil) message:NSLocalizedString(@"Please turn ON BlueTooth and LocationService. Turn OFF Airpane Mode. Check BePost is connected Location Services. restart　your iPhone.",nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     }
     
-
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
@@ -458,8 +464,9 @@
 - (IBAction)FacebookBtnTap:(id)sender {
     
     
-    NSString *urlString = @"https://www.facebook.com/app_scoped_user_id/";
-    NSString *str = [self.IDField.text substringFromIndex:2];
+    NSString *urlString = @"https://www.facebook.com/";
+    NSString *str = self.IDField.text;
+    //NSString *str = [self.IDField.text substringFromIndex:2];
     urlString = [NSString stringWithFormat:@"%@%@",urlString,str];
     
     
@@ -471,4 +478,57 @@
 
     
 }
+- (IBAction)PasteBtnTap:(id)sender {
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    [pasteboard setValue:self.IDField.text forPasteboardType:@"public.text"];
+    
+    UIAlertView *alert =
+    [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Copy",nil) message:NSLocalizedString(@"Text was copied.",nil)
+                              delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+
+    
+    
+}
+
+-(void)PushAlert{
+    NSLog(@"ボタンが押されました");
+    
+    //アラートビューの生成と設定
+    
+    
+    
+    NSString* title = [NSString stringWithFormat:@"%@'s ID",[phrases objectAtIndex:0]];
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:title
+                          message:NSLocalizedString(@"Do you want to recieve this user's ID?", nil)
+                          delegate:self
+                          cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+    [alert addButtonWithTitle:@"OK"];
+    [alert show];
+}
+
+-(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (buttonIndex) {
+        case 0:
+            
+            
+            //1番目のボタン（cancelButtonTitle）が押されたときのアクション
+            NSLog(@"1番目");
+            self.IDField.text = @"";
+            self.FacebookAddBtn.alpha = 0;
+            self.PasteBtn.alpha= 0;
+            self.AddressBtn.alpha = 0;
+            break;
+            
+        case 1:
+            //2番目のボタンが押されたときのアクション
+            NSLog(@"2番目");
+            self.IDField.text = [phrases objectAtIndex:1];
+            break;
+    }
+    
+}
+
 @end

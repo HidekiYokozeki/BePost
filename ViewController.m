@@ -34,6 +34,8 @@
     
     NSInteger View_y_position;
     NSString *facebookget;
+    BOOL error_flag;
+    NSString* userName;
     
 }
 
@@ -46,6 +48,8 @@
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.serNameField.delegate = self;
     
     self.NameBox.delegate = self;
     
@@ -122,6 +126,8 @@
     FacebookID = [userDefaults stringForKey:@"Facebook"];
     Phones = [userDefaults stringForKey:@"Phones"];
     remenber_position = [userDefaults integerForKey:@"remember"];
+    userName = [userDefaults stringForKey:@"userName"];
+    self.serNameField.text = userName;
     
     self.NameBox.text = Line;
     
@@ -145,10 +151,14 @@
     PhonesImage.frame = CGRectMake(10, 10, 100, 100);
     Phones_View.alpha = 0.8;
     [Phones_View addSubview:PhonesImage];
-     
-    [self FacebookLoginMake];
+    
+    
+    //[self FacebookLoginMake];
 }
 
+
+
+/*
 -(void) FacebookLoginMake{
     
     loginview = [[FBLoginView alloc] init];
@@ -178,12 +188,38 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:FacebookID forKey:@"Facebook"];
     [userDefaults synchronize];
-    
+ 
+ NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+ 
+ // ユーザーデフォルトから文字列配列を取得
+ // NSArray *names = [userDefaults stringForKey:@"names"];
+ Line = [userDefaults stringForKey:@"Line"];
+ 
     if(remenber_position == 250){
         self.NameBox.text = FacebookID;
         NSLog(@"Facebook ID1 = %@",FacebookID);
     }
 }
+*/
+
+
+//ディクショナリーを呼ぶ部分
+Userdefault *default;
+Dic *dic;
+dic = [default objectforkey:@"imagelist"];
+
+for in(NSStirng* imagestr in dic){
+
+
+}
+
+
+//ディクショナリにでーたを追加する部分
+NSsting imagename;
+[dic setString:imagename forkey:"日付"];
+userdedault default;
+//実際に保存（アプリ消した後でもディクショナリー内のデータを保存するため。
+[userdefault setobejct:dic forkey:@"imagelist"];
 
 
 
@@ -473,37 +509,19 @@
             Line_View.frame = CGRectMake(250, Line_View.frame.origin.y-55, 50, 50);
             Facebook_View.frame = CGRectMake(100, Facebook_View.frame.origin.y+55, 120, 120);
             Phones_View.frame = CGRectMake(20, Phones_View.frame.origin.y, 50, 50);
-            //[self.view bringSubviewToFront:_Left_view];
-            
-            /*
-            Line_View.layer.masksToBounds = YES;
-            Facebook_View.layer.masksToBounds = NO;
-            Phones_View.layer.masksToBounds = YES;
-            */
+
             break;
         case 250://右にある時
             Line_View.frame = CGRectMake(20, Line_View.frame.origin.y, 50, 50);
             Facebook_View.frame = CGRectMake(250, Facebook_View.frame.origin.y-55, 50, 50);
             Phones_View.frame = CGRectMake(100, Phones_View.frame.origin.y+55, 120, 120);
-            //[self.view bringSubviewToFront:_Right_view];
             
-            /*
-            Line_View.layer.masksToBounds = YES;
-            Facebook_View.layer.masksToBounds = NO;
-            Phones_View.layer.masksToBounds = NO;
-            */
             break;
         case 20://左にある時
             Line_View.frame = CGRectMake(100, Line_View.frame.origin.y+55, 120, 120);
             Facebook_View.frame = CGRectMake(20, Facebook_View.frame.origin.y, 50, 50);
             Phones_View.frame = CGRectMake(250, Phones_View.frame.origin.y-55, 50, 50);
             //[self.view bringSubviewToFront:_Middle_view];
-            
-            /*
-            Line_View.layer.masksToBounds = NO;
-            Facebook_View.layer.masksToBounds = YES;
-            Phones_View.layer.masksToBounds = NO;
-             */
             
             break;
             
@@ -542,39 +560,18 @@
             Line_View.frame = CGRectMake(20, Line_View.frame.origin.y-55, 50, 50);
             Facebook_View.frame = CGRectMake(250, Facebook_View.frame.origin.y, 50, 50);
             Phones_View.frame = CGRectMake(100, Phones_View.frame.origin.y+55, 120, 120);
-            
-            /*
-            Line_View.layer.masksToBounds = YES;
-            Facebook_View.layer.masksToBounds = YES;
-            Phones_View.layer.masksToBounds = NO;
-            */
-             
             break;
+            
         case 20://左にある時
             Line_View.frame = CGRectMake(250, Line_View.frame.origin.y, 50, 50);
             Facebook_View.frame = CGRectMake(100, Facebook_View.frame.origin.y+55, 120, 120);
             Phones_View.frame = CGRectMake(20, Phones_View.frame.origin.y-55, 50, 50);
-            //[self.view bringSubviewToFront:_Right_view];
-            
-            /*
-            Line_View.layer.masksToBounds = YES;
-            Facebook_View.layer.masksToBounds = NO;
-            Phones_View.layer.masksToBounds = YES;
-            */
-             
             break;
+            
         case 250://右にある時
             Line_View.frame = CGRectMake(100, Line_View.frame.origin.y+55, 120, 120);
             Facebook_View.frame = CGRectMake(20, Facebook_View.frame.origin.y-55, 50, 50);
             Phones_View.frame = CGRectMake(250, Phones_View.frame.origin.y, 50, 50);
-            //[self.view bringSubviewToFront:_Middle_view];
-            
-            /*
-            Line_View.layer.masksToBounds = NO;
-            Facebook_View.layer.masksToBounds = YES;
-            Phones_View.layer.masksToBounds = YES;
-            */
-            
             break;
             
         default:
@@ -602,30 +599,41 @@
     // 上スワイプされた時にログに表示
     
     
+    if(![self.serNameField.text isEqualToString:@""]){
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.2];
+        switch ((int)Line_View.frame.origin.x) {
+            case 100://真ん中にある時
+                Line_View.frame = CGRectMake(100, 0,120,10);
+                break;
+            case 20://左にある時
+                Phones_View.frame = CGRectMake(100, 0,120,10);
+                break;
+            case 250://右にある時
+                Facebook_View.frame = CGRectMake(100, 0,120,10);
+                break;
+            default:
+                break;
+        }
     
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.2];
-    switch ((int)Line_View.frame.origin.x) {
-        case 100://真ん中にある時
-            Line_View.frame = CGRectMake(100, 0,120,10);
-            break;
-        case 20://左にある時
-            Phones_View.frame = CGRectMake(100, 0,120,10);
-            break;
-        case 250://右にある時
-            Facebook_View.frame = CGRectMake(100, 0,120,10);
-            break;
-        default:
-            break;
-    }
-    
-    // デリゲートを設定する
-    [UIView setAnimationDelegate:self];
+        // デリゲートを設定する
+        [UIView setAnimationDelegate:self];
   
-    // アニメーション終了後に呼び出されるメソッドを指定する
-    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+        // アニメーション終了後に呼び出されるメソッドを指定する
+        [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
     
-    [UIView commitAnimations];
+        [UIView commitAnimations];
+    }else{
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:NSLocalizedString(@"BePost ID is empty.", nil)
+                              message:NSLocalizedString(@"Please put BePostID", nil)
+                              delegate:self
+                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        
+    }
     
 }
 
@@ -634,9 +642,7 @@
     
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
         [userDefaults setInteger:remenber_position forKey:@"remember"];
-    
     [userDefaults synchronize];
     
     
@@ -693,6 +699,7 @@
             FacebookImage.frame = CGRectMake(8, 8, 34, 34);
             PhonesImage.frame = CGRectMake(4, 4, 42, 42);
             self.NameBox.alpha = 1;
+            self.FBBtn.alpha = 0;
             break;
         case 20://左にある時
             self.idNameLabel.text = NSLocalizedString(@"Phone", nil);
@@ -708,6 +715,7 @@
             FacebookImage.frame = CGRectMake(8, 8, 34, 34);
             PhonesImage.frame = CGRectMake(10, 10, 100, 100);
             self.NameBox.alpha = 1;
+            self.FBBtn.alpha = 0;
 
             break;
         case 250://右にある時
@@ -717,7 +725,7 @@
             CurrentNum = 1;
             loginview.alpha = 0.7;
             self.NameBox.enabled = NO;
-            self.NameBox.alpha = 0;
+            self.FBBtn.alpha = 1;
             
             LineImage.frame = CGRectMake(0, 0, 50, 50);
             FacebookImage.frame = CGRectMake(20, 20, 80, 80);
@@ -777,7 +785,7 @@
             break;
     }
     
-     self.IDView.frame = CGRectMake(self.IDView.frame.origin.x, self.IDView.frame.origin.y+300, self.IDView.frame.size.width, self.IDView.frame.size.height);
+     self.IDView.frame = CGRectMake(self.IDView.frame.origin.x, self.IDView.frame.origin.y+200, self.IDView.frame.size.width, self.IDView.frame.size.height);
     
     // 値をすぐに反映させる
     [userDefaults synchronize];
@@ -785,18 +793,25 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    if([[segue identifier] isEqualToString:@"sender"]){
+        if([[segue identifier] isEqualToString:@"sender"]){
         
         SenderViewController *dvc = (SenderViewController*)segue.destinationViewController;
-        dvc.Name = self.NameBox.text;
         dvc.sendDataName = self.idNameLabel.text;
+            
+            if( [self.idNameLabel.text isEqualToString:@"Facebook"] ){
+                dvc.Name = FacebookID;
+            }else{
+                dvc.Name = self.NameBox.text;
+            }
+                dvc.UserName = userName;
 
-    }else if([[segue identifier] isEqualToString:@"reciever"]){
+        }else if([[segue identifier] isEqualToString:@"reciever"]){
         
-        RecieverViewController *dvc = (RecieverViewController*)segue.destinationViewController;
-        dvc.Name = self.NameBox.text;
+            RecieverViewController *dvc = (RecieverViewController*)segue.destinationViewController;
+            dvc.Name = self.NameBox.text;
         
-    }
+        }
+    
  
 }
 
@@ -960,8 +975,136 @@
 
 -(BOOL)textFieldShouldBeginEditing:
 (UITextField*)textField{
-    self.IDView.frame = CGRectMake(self.IDView.frame.origin.x, self.IDView.frame.origin.y-300, self.IDView.frame.size.width, self.IDView.frame.size.height);
+    
+    if(textField.tag == 10){
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.2];
+    
+    self.IDView.frame = CGRectMake(self.IDView.frame.origin.x, self.IDView.frame.origin.y-200, self.IDView.frame.size.width, self.IDView.frame.size.height);
+    [UIView commitAnimations];
+    return YES;
+    }
     return YES;
 }
+
+- (IBAction)FacebookBtn:(id)sender {
+    
+    ACAccountStore *accountStore = [[ACAccountStore alloc]init];
+    ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"1431330840463802",ACFacebookAppIdKey,[NSArray arrayWithObjects:@"email",nil],ACFacebookPermissionsKey,ACFacebookAudienceOnlyMe,ACFacebookAudienceKey,nil];
+    
+    UIActivityIndicatorView *indicator;
+    indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    indicator.color = [UIColor redColor];
+    indicator.frame = CGRectMake(110, 200, 100, 100);
+    // サブビューに追加する
+    [self.view addSubview:indicator];
+    
+    FacebookID = @"";
+    
+    NSArray *accounts = [accountStore accountsWithAccountType:accountType];
+    
+    if(accounts.count != 0){
+        ACAccount *anAccount = [accounts lastObject];
+        NSString *uid = [[[anAccount valueForKey:@"properties"] objectForKey:@"uid"] stringValue];
+        NSLog(@"%@",uid);
+        FacebookID = [NSString stringWithFormat:@"%@",uid];
+        NSLog(@"face%@",FacebookID);
+        self.NameBox.text = FacebookID;
+        NSLog(@"a = %@",FacebookID);
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:FacebookID forKey:@"Facebook"];
+        [userDefaults synchronize];
+    }else{
+        // クルクルと回し始める
+        [indicator startAnimating];
+    [accountStore requestAccessToAccountsWithType:accountType options:options completion:^(BOOL granted, NSError *error) {
+        
+        if(granted){
+            
+            NSArray *accounts = [accountStore accountsWithAccountType:accountType];
+            ACAccount *anAccount = [accounts lastObject];
+            NSString *uid = [[[anAccount valueForKey:@"properties"] objectForKey:@"uid"] stringValue];
+            NSLog(@"%@",uid);
+            FacebookID = [NSString stringWithFormat:@"%@",uid];
+            NSLog(@"face%@",FacebookID);
+            self.NameBox.text = FacebookID;
+            NSLog(@"a = %@",FacebookID);
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:FacebookID forKey:@"Facebook"];
+            [userDefaults synchronize];
+            UIAlertView *alert =
+            [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Complete",nil) message:NSLocalizedString(@"Success.",nil)
+                                      delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            [indicator stopAnimating];
+        }else{
+            
+            UIAlertView *alert =
+            [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Notice",nil) message:NSLocalizedString(@"You don't have FacebookID in your iPhone. Please download Facebook app from app store and regist your FacebookID. Otherwise, please access setting>>Facebook and allow Bepost to use your account.",nil)
+                                      delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            [indicator stopAnimating];
+        }
+    }];
+    }
+    
+
+    
+    /*
+    if(FacebookID == nil){
+        
+        UIAlertView *alert =
+        [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Notice",nil) message:NSLocalizedString(@"You don't have FacebookID in your iPhone. Please download Facebook app from app store and regist your FacebookID. Otherwise, please access setting>>Facebook and allow Bepost to use your account.",nil)
+                                  delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    
+    }
+    */
+    
+
+}
+
+- (IBAction)editEnd:(id)sender {
+    
+
+    
+}
+
+- (BOOL)textField:(UITextField *)textField
+shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    
+    if(textField.tag == 11){
+    // すでに入力されているテキストを取得
+    NSMutableString *text = [textField.text mutableCopy];
+    
+    // すでに入力されているテキストに今回編集されたテキストをマージ
+    [text replaceCharactersInRange:range withString:string];
+    
+    // 結果が文字数をオーバーしていないならYES，オーバーしている場合はNO
+    return ([text length] <= 6);
+    }
+    return YES;
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    if (textField.tag == 11) {
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:textField.text forKey:@"userName"];
+        [userDefaults synchronize];
+        userName = textField.text;
+        [self.view endEditing:YES];
+        return YES;
+        
+    }
+    return YES;
+
+}
+
 
 @end

@@ -35,6 +35,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *Load;
+- (IBAction)PasteBtnTap:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *PasteBtn;
+@property (weak, nonatomic) IBOutlet UILabel *testLabel;
 
 
 @end

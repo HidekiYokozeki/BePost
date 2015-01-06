@@ -19,15 +19,6 @@
                             <tableView clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8Nt-hz-DQe">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vzI-Hq-dyJ">
-                                <rect key="frame" x="222" y="74" width="40" height="40"/>
-                                <state key="normal" title="Button" image="Select.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="menuTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Zgt-Y9-47j"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYH-j0-09a">
                                 <rect key="frame" x="20" y="69" width="75" height="30"/>
                                 <state key="normal" title="送信ダミー">
@@ -49,7 +40,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="LineID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJl-IP-krc">
                                 <rect key="frame" x="118" y="381" width="84" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.94117653369903564" green="0.9490196704864502" blue="0.7882353663444519" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJh-2l-B9p">
@@ -75,11 +66,11 @@
                             <view opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bf0-pI-xzi">
                                 <rect key="frame" x="51" y="408" width="218" height="46"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NXR-d7-bqn">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NXR-d7-bqn">
                                         <rect key="frame" x="9" y="8" width="200" height="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                         <connections>
                                             <action selector="NameEdit:" destination="vXZ-lx-hvc" eventType="editingDidEndOnExit" id="89m-09-X8K"/>
                                         </connections>
@@ -98,6 +89,42 @@
                                     <action selector="FacebookBtn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Ncg-PF-PJE"/>
                                 </connections>
                             </button>
+                            <view opaque="NO" alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kMS-he-xIV">
+                                <rect key="frame" x="0.0" y="-2" width="320" height="70"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="11" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Zo-7W-4dg">
+                                        <rect key="frame" x="171.5" y="14.5" width="145" height="35"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                        <connections>
+                                            <action selector="editEnd:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="ytT-z8-ZPS"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="受信者に表示される名前です" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Db0-Hz-nks">
+                                        <rect key="frame" x="13" y="31" width="162" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(6文字以内、英数字のみ)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10r-cP-FbS">
+                                        <rect key="frame" x="20" y="43" width="162" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BePost ID名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Hc-Sx-GAx">
+                                        <rect key="frame" x="32" y="14" width="150" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -131,8 +158,8 @@
                         <outlet property="PickerBtn" destination="AJh-2l-B9p" id="DZU-XD-Inh"/>
                         <outlet property="RecDam" destination="Zcp-GJ-7Km" id="Uh7-cB-RzL"/>
                         <outlet property="idNameLabel" destination="vJl-IP-krc" id="F5r-Ib-HVr"/>
-                        <outlet property="menuSelect" destination="vzI-Hq-dyJ" id="G4J-qj-8HB"/>
                         <outlet property="sendDam" destination="MYH-j0-09a" id="5vd-XI-xtk"/>
+                        <outlet property="serNameField" destination="0Zo-7W-4dg" id="H2P-7h-RK4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -151,8 +178,8 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="送信中..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAF-eT-cD4">
-                                <rect key="frame" x="87" y="60" width="147" height="50"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="送信中..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAF-eT-cD4">
+                                <rect key="frame" x="0.0" y="60" width="320" height="50"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -161,6 +188,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="tM9-0z-Y76"/>
+                    <connections>
+                        <outlet property="Sending" destination="wAF-eT-cD4" id="mcl-0E-lna"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhy-jn-SA9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -264,17 +294,30 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YSc-it-YUH">
+                                <rect key="frame" x="123" y="464" width="74" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="IDをコピー">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="PasteBtnTap:" destination="SKN-LP-nEC" eventType="touchUpInside" id="r8b-ab-txr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.94117653369903564" green="0.94117653369903564" blue="0.94117653369903564" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="fal-5k-NPH" secondAttribute="bottom" constant="54" id="3Nj-nl-C8h"/>
+                            <constraint firstAttribute="trailing" secondItem="YSc-it-YUH" secondAttribute="trailing" constant="123" id="5ng-Pl-lZ6"/>
                             <constraint firstAttribute="trailing" secondItem="fal-5k-NPH" secondAttribute="trailing" constant="51" id="BAf-nU-WPR"/>
                             <constraint firstItem="LjK-0M-Eng" firstAttribute="leading" secondItem="kce-W2-iSZ" secondAttribute="leading" constant="135" id="Bfp-DP-9S9"/>
                             <constraint firstItem="fal-5k-NPH" firstAttribute="leading" secondItem="kce-W2-iSZ" secondAttribute="leading" constant="51" id="KGc-20-3LF"/>
                             <constraint firstAttribute="trailing" secondItem="jRc-1q-sXR" secondAttribute="trailing" constant="89" id="OFY-ZR-9oJ"/>
                             <constraint firstAttribute="bottom" secondItem="LjK-0M-Eng" secondAttribute="bottom" constant="102" id="Pug-TB-Ozx"/>
                             <constraint firstAttribute="trailing" secondItem="LjK-0M-Eng" secondAttribute="trailing" constant="134" id="QNM-62-rNK"/>
+                            <constraint firstAttribute="bottom" secondItem="YSc-it-YUH" secondAttribute="bottom" constant="10" id="a4H-Z2-ZcK"/>
                             <constraint firstItem="jRc-1q-sXR" firstAttribute="leading" secondItem="kce-W2-iSZ" secondAttribute="leading" constant="89" id="g33-ku-0VA"/>
+                            <constraint firstItem="YSc-it-YUH" firstAttribute="leading" secondItem="kce-W2-iSZ" secondAttribute="leading" constant="123" id="nsp-Ki-ySW"/>
                             <constraint firstAttribute="bottom" secondItem="jRc-1q-sXR" secondAttribute="bottom" constant="10" id="u9e-1w-LH4"/>
                         </constraints>
                     </view>
@@ -283,6 +326,7 @@
                         <outlet property="AddressBtn" destination="RcB-Fg-sGP" id="qvN-pZ-FPR"/>
                         <outlet property="FacebookAddBtn" destination="jRc-1q-sXR" id="X0w-2W-THW"/>
                         <outlet property="IDField" destination="GuZ-mO-Plk" id="B8X-bH-8mX"/>
+                        <outlet property="PasteBtn" destination="YSc-it-YUH" id="bL6-oJ-oPp"/>
                         <outlet property="titleLabel" destination="bix-gS-zXa" id="7yu-r2-8YL"/>
                     </connections>
                 </viewController>
@@ -291,9 +335,6 @@
             <point key="canvasLocation" x="1177" y="344"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Select.png" width="256" height="256"/>
-    </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

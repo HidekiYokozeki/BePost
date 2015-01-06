@@ -17,5 +17,6 @@
 @property(nonatomic) NSUUID *proximityUUID;
 @property(copy, nonatomic) NSString *Name;
 @property(copy, nonatomic) NSString *sendDataName;
-
+@property (weak, nonatomic) IBOutlet UILabel *Sending;
+@property(copy, nonatomic) NSString *UserName;
 @end

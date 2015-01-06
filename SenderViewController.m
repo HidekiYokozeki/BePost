@@ -36,17 +36,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+//       0 1 10 11 100 101 110 111 1000 1001 1010 1011 1100 1101 1110 1111
+//       0 1 2  3  4   5   6   7   8    9    A    B    C    D    E    F
+    
     /*
     [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:0.000 green:0.549 blue:0.890 alpha:1.000];
     */
           self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Back.png"]];
 
-    self.proximityUUID = [[NSUUID alloc] initWithUUIDString:@"1E21BCE0-7655-4647-B492-A3F8DE2F9A02"];
+    self.proximityUUID = [[NSUUID alloc] initWithUUIDString:@"AE21BCE0-7655-4647-B492-A3F8DE2F9A02"];
     // CBPeripheralManagerを作成
     self.manager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil options:nil];
 
     counter = 0;
     StartFlag = YES;
+    
+    _Name = [NSString stringWithFormat:@"%@%@%@",_UserName,@"/",_Name];
+    NSLog(@"test ==== %@",_UserName);
 
     timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                               target:self
@@ -149,7 +155,6 @@
         }else{
             major = 3;
             minor = 3;
-        
         }
         StartFlag = NO;
     
@@ -251,6 +256,17 @@
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
 {
+    
+    if(peripheral.state == 4){
+        [indicator stopAnimating];
+        self.Sending.text = @"Bluetooth OFF.";
+        UIAlertView *alert =
+        [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Notice",nil) message:NSLocalizedString(@"Your Bluetooth has been OFF. Please Access Setting>>Bluetooth and Turn ON.",nil)
+                                  delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        
+    }
+    
     switch (peripheral.state) {
         case CBPeripheralManagerStatePoweredOn:
             NSLog(@"CBPeripheralManagerStatePoweredOn");
@@ -279,6 +295,8 @@
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
+    
+    self.sendDataName = @"";
     [self.manager stopAdvertising];
      [timer invalidate];
     

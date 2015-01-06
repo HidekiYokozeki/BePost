@@ -10,12 +10,19 @@
 "Recieving..." = "受信中";
 "Complete" = "受信完了";
 "Beacon error" = "Beacon エラー";
-"Please turn ON BlueTooth And turn OFF Airpane Mode." = "BlueToothがOFFになっていないか、または機内モードになっていないか確認してください。";
+"Please turn ON BlueTooth and LocationService. Turn OFF Airpane Mode. Check BePost is connected Location Services. restart　your iPhone." = "BlueToothがOFFになっていないか、位置情報連携がBePostとされていないか、または機内モードになっていないか確認してください。確認後、iPhoneを再起動してください。";
 "Your iPhone don't allow to access AddressBook. Please Access Setting>>Privacy>>Contacts and allow." =
 "連絡先へのアクセスが禁止されています。\n設定>プライバシー>連絡先から、アクセスの設定を\"オン\"に変更してください。";
 "Notice" = "お知らせ";
 "By flick down, Mode will be changed to ID Recieving Mode." = "下フリックでIDの受信モードになります。受信が完了すると受信したIDが表示されます。";
 "Turn On Bluetooth and LocationService. After that, Choose your ID you want to send by flick left or right." = "Bluetooth, 位置情報サービスをONにし、右フリック,左フリックで送信したい情報(Facebook,Line,電話番号)を選択します。";
-"By flick up, Mode will be changed to ID Sending Mode." = "上フリックでIDの送信モードになります。";
+
+"By flick up, Mode will be changed to ID Sending Mode. You need to pu BePostID before sending." = "上フリックでIDの送信モードになります。その際にはBePostIDの入力が必要です。";
 "Your Bluetooth has been OFF. Please Access Setting>>Bluetooth and Turn ON." = "BluetoothがOFFになっています。設定>>BluetoothからBluetoothをONにしてください";
 "You don't have FacebookID in your iPhone. Please download Facebook app from app store and regist your FacebookID. Otherwise, please access setting>>Facebook and allow Bepost to use your account." = "iPhoneからあなたのFacebookIDを探せません。Facebookアプリをダウンロードし、あなたのIDを登録してください。また、設定>>Facebookから、BePostがあなたのアカウントを使用する事を許可してください。";
+"Success." = "成功";
+"Complete" = "Facebookとの同期が完了しました。";
+"Text was copied." = "コピーしました。";
+"BePost ID is empty." = "BePostIDが空です。";
+"Please put BePostID" = "BePostIDを入力してください。";
+"Do you want to recieve this user's ID?" = "上記ユーザのIDを表示しますか？";
